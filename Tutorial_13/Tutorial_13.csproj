@@ -9,6 +9,8 @@
     <Compile Remove="Migrations\20200605110754_AddOrderTable.Designer.cs" />
     <Compile Remove="Migrations\20200605110926_AddConfectioneryTable.cs" />
     <Compile Remove="Migrations\20200605110926_AddConfectioneryTable.Designer.cs" />
+    <Compile Remove="Migrations\20200605114121_AddConfectionery_OrderTable.cs" />
+    <Compile Remove="Migrations\20200605114121_AddConfectionery_OrderTable.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,6 +19,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
   </ItemGroup>
 
 

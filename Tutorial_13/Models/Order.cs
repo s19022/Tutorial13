@@ -28,5 +28,7 @@ namespace Tutorial_13.Models
 
         [ForeignKey("IdEmployee")]
         public Employee Employee { get; set; }
+
+        public int Smth { get; set; }
     }
 }

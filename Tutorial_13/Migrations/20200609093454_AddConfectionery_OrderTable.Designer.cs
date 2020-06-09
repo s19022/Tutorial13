@@ -10,7 +10,7 @@ using Tutorial_13.Models;
 namespace Tutorial_13.Migrations
 {
     [DbContext(typeof(OrderDbContext))]
-    [Migration("20200605114121_AddConfectionery_OrderTable")]
+    [Migration("20200609093454_AddConfectionery_OrderTable")]
     partial class AddConfectionery_OrderTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
