@@ -19,7 +19,7 @@ namespace Tutorial_13.Models
 
         public string Notes { get; set; }
         
-        public int IdClient { get; set; }
+        public int IdCustomer { get; set; }
 
         [ForeignKey("IdCustomer")]
         public Customer Customer { get; set; }
@@ -29,6 +29,5 @@ namespace Tutorial_13.Models
         [ForeignKey("IdEmployee")]
         public Employee Employee { get; set; }
 
-        public int Smth { get; set; }
     }
 }

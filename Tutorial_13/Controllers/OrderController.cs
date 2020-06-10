@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Tutorial_13.DTOs.Request;
+using Tutorial_13.DTOs.Responce;
+using Tutorial_13.Exceptions;
 using Tutorial_13.Models;
 
 namespace Tutorial_13.Controllers
@@ -23,7 +25,13 @@ namespace Tutorial_13.Controllers
         [HttpGet]
         public IActionResult GetListOfOrders(OrderRequest requets)
         {
-            return Ok(_context.GetListOfOrders(requets));
+            try
+            {
+                return Ok(_context.GetListOfOrders(requets))    ;
+            }catch(NoCustomerWithNameException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

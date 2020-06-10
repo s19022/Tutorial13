@@ -110,10 +110,7 @@ namespace Tutorial_13.Migrations
                     b.Property<DateTime>("DateFinished")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("IdClient")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdCustomer")
+                    b.Property<int>("IdCustomer")
                         .HasColumnType("int");
 
                     b.Property<int>("IdEmployee")
@@ -150,7 +147,9 @@ namespace Tutorial_13.Migrations
                 {
                     b.HasOne("Tutorial_13.Models.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("IdCustomer");
+                        .HasForeignKey("IdCustomer")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Tutorial_13.Models.Employee", "Employee")
                         .WithMany()

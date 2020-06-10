@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Tutorial_13.DTOs.Request;
 using Tutorial_13.DTOs.Responce;
+using Tutorial_13.Exceptions;
 
 namespace Tutorial_13.Models
 {
@@ -39,8 +40,15 @@ namespace Tutorial_13.Models
         public List<OrderResponce> GetListOfOrders(OrderRequest request)
         {
             string name = request.Name;
-            if (name == null) name = "";
 
+            if (name != null)
+            {
+                int count = Customer.Where(cust => cust.Name == name).Count();
+                if (count == 0) throw new NoCustomerWithNameException("No customer found with name " + name);  
+            }
+
+            if (name == null) name = "";
+            
             return Order.Join(Confectionery_Order,
                 order => order.IdOrder,
                 con_order => con_order.IdOrder,
@@ -50,10 +58,11 @@ namespace Tutorial_13.Models
                     DateAccepted = order.DateAccepted,
                     DateFinished = order.DateFinished,
                     Notes = order.Notes,
-                    IdClient = order.IdClient,
+                    IdCustomer = order.IdCustomer,
                     IdConfectionery = con_order.IdConfectionary
                 }).Where(resp => Customer.Where(customer => customer.Name.Contains(name)).Select(cust => cust.IdCustomer)
-                .Contains(resp.IdClient)).ToList();
+                .Contains(resp.IdCustomer))
+                .ToList();
 
         }
 

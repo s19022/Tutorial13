@@ -15,7 +15,7 @@ namespace Tutorial_13.DTOs.Responce
 
         public string Notes { get; set; }
 
-        public int IdClient { get; set; }
+        public int IdCustomer { get; set; }
 
         public int IdConfectionery { get; set; }
 
