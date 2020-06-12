@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Tutorial_13.DTOs.Responce
 {
-    public class OrderResponce
+    public class GetOrdersResponce
     {
         public int IdOrder { get; set; }
 

@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Tutorial_13.Models;
+using Tutorial_13.Services;
 
 namespace Tutorial_13
 {
@@ -28,6 +29,9 @@ namespace Tutorial_13
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IOrderDbService, MsSqlOrderDbService>();
+
+
             services.AddDbContext<OrderDbContext>(options =>
             {
                 options.UseSqlServer("Data Source=db-mssql;Initial Catalog=s19022;Integrated Security=True");

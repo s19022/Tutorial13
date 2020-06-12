@@ -5,8 +5,12 @@ using System.Threading.Tasks;
 
 namespace Tutorial_13.DTOs.Request
 {
-    public class OrderRequest
+    public class AddConfectioneryRequest
     {
+        public int Quantity { get; set; }
+
         public string Name { get; set; }
+
+        public string Notes { get; set; }
     }
 }

@@ -8,6 +8,7 @@ using Tutorial_13.DTOs.Request;
 using Tutorial_13.DTOs.Responce;
 using Tutorial_13.Exceptions;
 using Tutorial_13.Models;
+using Tutorial_13.Services;
 
 namespace Tutorial_13.Controllers
 {
@@ -15,20 +16,20 @@ namespace Tutorial_13.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        private readonly OrderDbContext _context;
+        private readonly IOrderDbService _service;
 
-        public OrderController(OrderDbContext context)
+        public OrderController(IOrderDbService service)
         {
-            _context = context;
+            _service = service;
         }
 
         [HttpGet]
-        public IActionResult GetListOfOrders(OrderRequest requets)
+        public IActionResult GetListOfOrders(GetOrdersRequest requets)
         {
             try
             {
-                return Ok(_context.GetListOfOrders(requets))    ;
-            }catch(NoCustomerWithNameException ex)
+                return Ok(_service.GetListOfOrders(requets))    ;
+            }catch(NoSuchCustomerException ex)
             {
                 return BadRequest(ex.Message);
             }

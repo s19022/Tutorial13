@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Tutorial_13.Exceptions
 {
-    public class NoCustomerWithNameException : Exception
+    public class NoSuchCustomerException : Exception
     {
-        public NoCustomerWithNameException(string name) : base(name)
+        public NoSuchCustomerException(string name) : base(name)
         {
 
         }

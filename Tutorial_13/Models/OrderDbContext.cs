@@ -1,11 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Tutorial_13.DTOs.Request;
-using Tutorial_13.DTOs.Responce;
-using Tutorial_13.Exceptions;
 
 namespace Tutorial_13.Models
 {
@@ -37,34 +30,8 @@ namespace Tutorial_13.Models
             modelBuilder.Entity<Confectionery_Order>().HasKey(x => new { x.IdConfectionary, x.IdOrder });
         }
 
-        public List<OrderResponce> GetListOfOrders(OrderRequest request)
-        {
-            string name = request.Name;
-
-            if (name != null)
-            {
-                int count = Customer.Where(cust => cust.Name == name).Count();
-                if (count == 0) throw new NoCustomerWithNameException("No customer found with name " + name);  
-            }
-
-            if (name == null) name = "";
-            
-            return Order.Join(Confectionery_Order,
-                order => order.IdOrder,
-                con_order => con_order.IdOrder,
-                (order, con_order) => new OrderResponce()
-                {
-                    IdOrder = order.IdOrder,
-                    DateAccepted = order.DateAccepted,
-                    DateFinished = order.DateFinished,
-                    Notes = order.Notes,
-                    IdCustomer = order.IdCustomer,
-                    IdConfectionery = con_order.IdConfectionary
-                }).Where(resp => Customer.Where(customer => customer.Name.Contains(name)).Select(cust => cust.IdCustomer)
-                .Contains(resp.IdCustomer))
-                .ToList();
-
-        }
+    
+     
 
     }
 }
